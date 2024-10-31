@@ -1,0 +1,10 @@
+^E:\CODE\TEST_CODES\CONAN_TEST\CMAKELISTS.TXT
+setlocal
+C:\msys64\mingw64\bin\cmake.exe -SE:/code/test_codes/conan_test -BE:/code/test_codes/conan_test/build --check-stamp-file E:/code/test_codes/conan_test/build/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

@@ -1,0 +1,10 @@
+build/
+uploads/*
+!uploads/.gitkeep
+logs/
+*.o
+*.pyc
+__pycache__/
+.vscode/
+.idea/
+cmake-build-*/

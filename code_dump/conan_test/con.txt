@@ -1,0 +1,12 @@
+[requires]
+fmt/9.1.0
+
+[generators]
+CMakeDeps
+CMakeToolchain
+
+[options]
+*/*:shared=False
+
+[layout]
+cmake_layout

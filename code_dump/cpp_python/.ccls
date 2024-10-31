@@ -1,0 +1,2 @@
+%h -I/usr/include/python3.12
+%h -I/usr/local/include/python3.12

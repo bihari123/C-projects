@@ -1,0 +1,10 @@
+^E:\CODE\TEST_CODES\CONAN_TEST\BUILD\CMAKEFILES\A2A592CCB27709841A3DD63E0D38B20D\GENERATE.STAMP.RULE
+setlocal
+C:\msys64\mingw64\bin\cmake.exe -SE:/code/test_codes/conan_test -BE:/code/test_codes/conan_test/build --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file E:/code/test_codes/conan_test/build/MyProject.sln
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

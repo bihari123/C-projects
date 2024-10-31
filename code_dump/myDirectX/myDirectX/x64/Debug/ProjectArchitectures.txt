@@ -1,0 +1,1 @@
+C:\Users\thaku\source\repos\myDirectX\myDirectX.vcxproj;x64
