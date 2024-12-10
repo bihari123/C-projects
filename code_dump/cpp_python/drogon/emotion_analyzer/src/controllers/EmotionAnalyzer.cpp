@@ -7,6 +7,7 @@
 #include <json/json.h>
 #include <random>
 #include <sstream>
+#include <trantor/utils/Logger.h>
 
 namespace api {
 
@@ -58,10 +59,11 @@ void EmotionAnalyzer::initPythonState() {
     // Import emotion_analyzer module
     pythonState_->module = PyImport_ImportModule("emotion_analyzer");
     if (!pythonState_->module) {
+      LOG_ERROR << "Module emotion_analyzer not found ";
       PyErr_Print();
       throw std::runtime_error("Failed to import emotion_analyzer module");
     }
-
+    LOG_TRACE << "Python module found";
     // Get analyze_emotions function
     pythonState_->func =
         PyObject_GetAttrString(pythonState_->module, "analyze_emotions");

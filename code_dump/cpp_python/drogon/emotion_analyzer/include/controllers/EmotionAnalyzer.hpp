@@ -22,11 +22,9 @@ struct UploadSession {
 
 class EmotionAnalyzer {
 public:
-  // Singleton access
-  static EmotionAnalyzer &getInstance() {
-    static EmotionAnalyzer instance;
-    return instance;
-  }
+  EmotionAnalyzer();
+  ~EmotionAnalyzer();
+
   void handleInitialize(
       const drogon::HttpRequestPtr &req,
       std::function<void(const drogon::HttpResponsePtr &)> &&callback);
@@ -37,17 +35,7 @@ public:
       const drogon::HttpRequestPtr &req,
       std::function<void(const drogon::HttpResponsePtr &)> &&callback);
 
-  static void shutdown();
-  static void signalHandler(int signo);
-
 private:
-  EmotionAnalyzer();
-  ~EmotionAnalyzer();
-
-  static std::atomic<bool> running_;
-  static EmotionAnalyzer *instance_;
-  void cleanup();
-
   static constexpr size_t MAX_FILE_SIZE = 500 * 1024 * 1024; // 500MB
   static constexpr const char *UPLOAD_DIR = "uploads";
 
@@ -63,6 +51,7 @@ private:
   std::unordered_map<std::string, UploadSession> sessions_;
   std::mutex sessionsMutex_;
   std::unique_ptr<std::thread> cleanupThread_;
+  bool running_;
 
   // Thread-local Python state
   static thread_local std::unique_ptr<PythonState> pythonState_;

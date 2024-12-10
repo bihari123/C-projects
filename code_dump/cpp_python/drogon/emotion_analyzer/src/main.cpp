@@ -12,7 +12,8 @@ int main() {
   // Load configuration
   try {
     // Configure Drogon app
-    drogon::app()
+
+    /*drogon::app()
         .setLogPath("./logs")
         .setLogLevel(trantor::Logger::kInfo)
         .setUploadPath("./uploads")
@@ -21,8 +22,8 @@ int main() {
         .setMaxConnectionNum(100000)
         .setMaxConnectionNumPerIP(0)
         .setIdleConnectionTimeout(60)
-        // .setMaxBodySize(500 * 1024 * 1024) // 500MB
         .addListener("0.0.0.0", 8080);
+*/
 
     // Initialize Python paths
     auto sysPath = std::filesystem::current_path().string();
@@ -34,7 +35,13 @@ int main() {
     LOG_INFO << "Python path: " << sysPath;
 
     // Start the server
-    drogon::app().run();
+    // drogon::app().run();
+    drogon::app()
+        // Load configuration file
+        .loadConfigFile("config.json")
+
+        // Start the server
+        .run();
 
   } catch (const std::exception &e) {
     std::cerr << "Fatal error: " << e.what() << std::endl;
